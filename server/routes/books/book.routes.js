@@ -17,7 +17,7 @@ router.get("/details/:id", (req, res) => {
 });
 
 //Creates a new book with the specified details
-router.post("/create-new-book", isLoggedIn, (req, res) => {
+router.post("/create-new-book", (req, res) => {
   const { author, isbn, name } = req.body;
 
   Book.create({ author, isbn, name }).then((response) => {
@@ -26,7 +26,7 @@ router.post("/create-new-book", isLoggedIn, (req, res) => {
 });
 
 //Updates an existing book
-router.put("/updateBook/:id", isLoggedIn, (req, res) => {
+router.put("/updateBook/:id", (req, res) => {
   let { author, isbn, name } = req.body;
   Book.findOneAndUpdate({ author, isbn, name }, { new: true }).then(
     (response) => {

@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import AuthorsService from "../../Services/AuthorsServices/authors.service";
+import UploadService from "../../Services/UploadServices/upload.service";
 
 let authorService = new AuthorsService();
+let uploadService = new UploadService();
 
 export default function NewAuthorForm(props) {
   const [author, setAuthor] = useState({
@@ -17,11 +19,23 @@ export default function NewAuthorForm(props) {
         last_name: author.last_name,
       })
       .then((response) => {
-        console.log(response);
         props.close();
         props.history.push("/autores");
       })
       .catch((err) => console.log(err));
+  };
+
+  const handleUploadChange = (e) => {
+    const uploadData = new FormData();
+    uploadData.append("imageData", e.target.files[0]);
+    console.log(uploadData);
+    uploadService
+      .uploadImage(uploadData)
+      .then((response) => {
+        console.log(response);
+        setAuthor({ ...author, img_url: response.data.cloudinary_url });
+      })
+      .catch((err) => console.log("El error", { err }));
   };
 
   let handleInputChange = (e) => {
@@ -76,6 +90,61 @@ export default function NewAuthorForm(props) {
                 required
                 className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               />
+            </div>
+            <div className="flex justify-center mt-8">
+              <div className="max-w rounded-lg shadow-xl bg-white">
+                <div className="m-4">
+                  {!author.img_url && (
+                    <>
+                      <label className="inline-block mb-2 text-gray-500">
+                        Nueva foto
+                      </label>
+                      <div className="flex items-center justify-center w-full">
+                        <label className="flex flex-col w-full h-32 border-4 border-green-200 border-dashed hover:bg-gray-100 hover:border-gray-300">
+                          <div className="flex flex-col items-center justify-center">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              className="w-8 h-8 text-gray-400 group-hover:text-gray-600 pt-7"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
+                                d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
+                              />
+                            </svg>
+
+                            <p className="pt-1 text-sm tracking-wider text-gray-400 group-hover:text-gray-600">
+                              Sube una foto
+                            </p>
+                          </div>
+
+                          <input
+                            type="file"
+                            name="imageData"
+                            className="opacity-0"
+                            onChange={handleUploadChange}
+                          />
+                        </label>
+                      </div>
+                    </>
+                  )}
+                  {author.img_url && (
+                    <img
+                      className="object-center object-cover w-32 h-32 text-gray-400 group-hover:text-gray-600 rounded-full"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      src={author.img_url}
+                      alt=""
+                    />
+                  )}
+                </div>
+                <div className="flex justify-center p-2"></div>
+              </div>
             </div>
             <button
               type="submit"

@@ -3,6 +3,7 @@ import AuthorService from "../../Services/AuthorsServices/authors.service";
 //import AuthorCard from "./ProductCard";
 import SearchBar from "../SearchBar/SearchBar";
 import NewAuthor from "./NewAuthor";
+import AuthorCard from "./AuthorCard";
 
 let service = new AuthorService();
 
@@ -16,8 +17,8 @@ export default function AllProducts() {
     service
       .getAllAuthors()
       .then((result) => {
-        setAuthors((authors = result.data.authors));
-        setAuthorsCopy((authorsCopy = result.data.authors));
+        setAuthors((authors = result.data));
+        setAuthorsCopy((authorsCopy = result.data));
       })
       .catch((err) => console.log(err));
   };
@@ -68,19 +69,14 @@ export default function AllProducts() {
       <div>
         <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:max-w-7xl lg:px-8 ">
           <SearchBar getInfo={getInfo} />
-          {authorsCopy.length === 0 && (
-            <div className="text-center mb-4">
-              No hay todavia ningun autor en nuestras listas, añade uno
-            </div>
-          )}
           <NewAuthor />
-          {/* <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
+          <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
             {authorsCopy.map((author) => (
               <div key={author._id}>
                 <AuthorCard author={author} />
               </div>
             ))}
-          </div> */}
+          </div>
         </div>
       </div>
     </>
