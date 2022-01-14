@@ -18,21 +18,29 @@ router.get("/details/:id", (req, res) => {
 
 //Creates a new book with the specified details
 router.post("/create-new-book", (req, res) => {
-  const { author, isbn, name } = req.body;
+  const { author, isbn, name, description } = req.body;
 
-  Book.create({ author, isbn, name }).then((response) => {
+  Book.create({ author, isbn, name, description }).then((response) => {
     res.json(response);
   });
 });
 
 //Updates an existing book
-router.put("/updateBook/:id", (req, res) => {
-  let { author, isbn, name } = req.body;
-  Book.findOneAndUpdate({ author, isbn, name }, { new: true }).then(
-    (response) => {
-      return res.json(response);
-    }
-  );
+router.post("/edit/:id", (req, res) => {
+  const { id } = req.params;
+  console.log(id);
+  let { isbn, name, description } = req.body;
+  Book.findByIdAndUpdate(
+    id,
+    {
+      isbn,
+      name,
+      description,
+    },
+    { new: true }
+  ).then((response) => {
+    return res.json(response);
+  });
 });
 
 module.exports = router;

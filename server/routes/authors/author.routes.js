@@ -3,7 +3,7 @@ const Author = require("../../models/author.model");
 
 //Creates a new author with the specified details
 router.post("/create-new-author", (req, res) => {
-  const { first_name, last_name } = req.body;
+  const { first_name, last_name, img_url } = req.body;
 
   Author.create({ first_name, last_name, img_url }).then((response) => {
     res.json(response);

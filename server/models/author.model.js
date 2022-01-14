@@ -4,10 +4,8 @@ const authorSchema = new Schema(
   {
     first_name: String,
     last_name: String,
-    img_url: {
-      type: String,
-      required: true,
-    },
+    quote: String,
+    img_url: String,
   },
   {
     timestamps: true,
