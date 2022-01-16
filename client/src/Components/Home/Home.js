@@ -5,16 +5,13 @@ import Writter from "../../images/writter-home.jpg";
 
 export default function Example() {
   return (
-    <div className="relative bg-white pt-16 pb-32 overflow-hidden">
-      {
-        //First section of Home
-      }
+    <div className=" bg-gray-200 pt-24 pb-32 overflow-hidden">
       <div className="relative">
-        <div className="lg:mx-auto lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-2 lg:grid-flow-col-dense lg:gap-24">
+        <div className="lg:mx-auto lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-2 lg:grid-flow-col-dense lg:gap-24 ">
           <div className="px-4 max-w-xl mx-auto sm:px-6 lg:py-16 lg:max-w-none lg:mx-0 lg:px-0">
             <div>
               <div>
-                <span className="h-12 w-12 rounded-md flex items-center justify-center bg-gray-200">
+                <span className="h-12 w-12 rounded-md flex items-center justify-center bg-white">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     class="h-6 w-6"
@@ -44,7 +41,7 @@ export default function Example() {
                 </p>
               </div>
             </div>
-            <div className="mt-8 border-t border-gray-200 pt-6">
+            <div className="mt-8 border-t border-gray-400 pt-6">
               <blockquote>
                 <div>
                   <p className="text-base text-gray-500">
@@ -97,7 +94,7 @@ export default function Example() {
           <div className="px-4 max-w-xl mx-auto sm:px-6 lg:py-32 lg:max-w-none lg:mx-0 lg:px-0 lg:col-start-2">
             <div>
               <div>
-                <span className="h-12 w-12 rounded-md flex items-center justify-center bg-gray-200">
+                <span className="h-12 w-12 rounded-md flex items-center justify-center bg-white">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     class="h-6 w-6"

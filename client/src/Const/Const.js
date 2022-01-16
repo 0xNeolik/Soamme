@@ -20,7 +20,7 @@ export const navigation = {
     },
     {
       name: "Instagram",
-      href: "https://www.instagram.com/nextdoor_app/",
+      href: "#",
       icon: (props) => (
         <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
           <path
@@ -42,3 +42,13 @@ export const navigation = {
     },
   ],
 };
+export const notLogged = [
+  { name: "Inicio de Sesión", href: "/login", current: false },
+  { name: "Registrarse", href: "/signUp", current: false },
+];
+
+export const navigationNavBar = [
+  { name: "Inicio", href: "/", current: false },
+  { name: "Autores", href: "/autores", current: false },
+  { name: "Libros", href: "/libros", current: false },
+];

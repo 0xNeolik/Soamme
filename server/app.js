@@ -11,6 +11,7 @@ const app = express();
 app.use(express.static(path.join(__dirname, "public")));
 
 require("./config")(app);
+require("./config/session.config")(app);
 
 require("./routes")(app);
 

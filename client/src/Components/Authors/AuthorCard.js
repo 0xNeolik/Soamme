@@ -4,30 +4,24 @@ import { Link } from "react-router-dom";
 function AuthorCard(props) {
   let author = props.author;
   return (
-    <div>
-      <div key={author._id} className="group bg-white rounded-lg">
-        <div className="w-full  aspect-w-1 aspect-h-1 bg-white overflow-hidden xl:aspect-w-7 xl:aspect-h-8 rounded-lg">
-          <img
-            src={author.img_url}
-            className="group w-full h-80 object-center object-cover bg-white rounded-lg"
-            alt="Author Img"
-          />
+    <Link to={`/autores/${author._id}`}>
+      <div
+        key={author._id}
+        className="relative rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm flex items-center space-x-3 hover:border-gray-400 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500"
+      >
+        <div className="flex-shrink-0">
+          <img className="h-10 w-10 rounded-full" src={author.img_url} alt="" />
         </div>
-        <div className="pl-8 pb-4 bg-gray-50 rounded-lg">
-          <h3 className="pt-4 pr-2 mb-6 text-sm text-black h-10">
+        <div className="flex-1 min-w-0">
+          <span className="absolute inset-0" aria-hidden="true" />
+          <p className="text-sm font-medium text-gray-900">
+            {" "}
             {author.first_name} {author.last_name}
-          </h3>
-          {/* <Link to={`/products/${product._id}`}>
-            <button
-              type="button"
-              className="mt-4 shadow-sm text-sm font-medium text-black  border-b-2 border-green-500 transition duration-500 ease-in-out transform hover:scale-90 hover:translate-y-1"
-            >
-              Detalles de producto
-            </button>
-          </Link> */}
+          </p>
+          <p className="text-sm text-gray-500 truncate">{author.allias}</p>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
 export default AuthorCard;

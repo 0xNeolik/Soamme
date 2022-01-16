@@ -4,10 +4,11 @@ import AuthorService from "../../Services/AuthorsServices/authors.service";
 import SearchBar from "../SearchBar/SearchBar";
 import NewAuthor from "./NewAuthor";
 import AuthorCard from "./AuthorCard";
+import Filter from "../Filters/Filter";
 
 let service = new AuthorService();
 
-export default function AllProducts() {
+export default function Authors() {
   let [authors, setAuthors] = useState([]);
   let [authorsCopy, setAuthorsCopy] = useState([]);
   let [shorts, setShort] = useState();
@@ -22,6 +23,7 @@ export default function AllProducts() {
       })
       .catch((err) => console.log(err));
   };
+
   useEffect(() => {
     loadAuthors();
   }, []);
@@ -29,33 +31,25 @@ export default function AllProducts() {
   const getInfo = (searching) => {
     setSearch(searching);
   };
+
   const getShort = (id) => {
     setShort(id);
   };
 
   useEffect(() => {
     let copy = [...authors];
+
     if (search.length !== 0) {
       copy = authors.filter((author) =>
-        authors.name.toLowerCase().includes(search)
+        author.first_name.toLowerCase().includes(search)
       );
     }
-    if (shorts == 1) {
+    if (shorts === true) {
       copy = copy.sort((a, b) => {
-        if (a.name > b.name) {
-          return -1;
-        }
-        if (a.name < b.name) {
+        if (a.first_name > b.first_name) {
           return 1;
         }
-        return 0;
-      });
-    } else if (shorts == 0) {
-      copy = copy.sort((a, b) => {
-        if (a.name > b.name) {
-          return 1;
-        }
-        if (a.name < b.name) {
+        if (a.first_name < b.first_name) {
           return -1;
         }
         return 0;
@@ -69,8 +63,18 @@ export default function AllProducts() {
       <div>
         <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:max-w-7xl lg:px-8 ">
           <SearchBar getInfo={getInfo} />
-          <NewAuthor />
-          <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
+
+          <div className="flex sm:justify-between">
+            <Filter getShort={getShort} />
+            <NewAuthor loadAuthors={loadAuthors} />
+          </div>
+          {authors.length === 0 && (
+            <div className="text-center mb-4">
+              No hay todavia ningun autor en nuestras listas, añade uno
+            </div>
+          )}
+
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
             {authorsCopy.map((author) => (
               <div key={author._id}>
                 <AuthorCard author={author} />

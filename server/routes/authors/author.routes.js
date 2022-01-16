@@ -3,9 +3,9 @@ const Author = require("../../models/author.model");
 
 //Creates a new author with the specified details
 router.post("/create-new-author", (req, res) => {
-  const { first_name, last_name, img_url } = req.body;
+  const { first_name, last_name, allias, img_url } = req.body;
 
-  Author.create({ first_name, last_name, img_url }).then((response) => {
+  Author.create({ first_name, last_name, allias, img_url }).then((response) => {
     res.json(response);
   });
 });
@@ -24,10 +24,16 @@ router.get("/details/:id", (req, res) => {
 });
 
 //Updates an existing author
-router.put("/updateAuthor/:id", (req, res) => {
-  let { first_name, last_name, img_url } = req.body;
-  Author.findOneAndUpdate(
-    { first_name, last_name, img_url },
+router.put("/updateAuthor", (req, res) => {
+  let { id, first_name, last_name, allias, img_url } = req.body;
+  Author.findByIdAndUpdate(
+    id,
+    {
+      first_name,
+      last_name,
+      allias,
+      img_url,
+    },
     { new: true }
   ).then((response) => {
     return res.json(response);

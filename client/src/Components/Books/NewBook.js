@@ -1,11 +1,10 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { PlusSmIcon } from "@heroicons/react/solid";
 import NewBookForm from "./NewBookForm";
 
-function NewBook() {
+function NewBook(props) {
   const [isOpen, setOpen] = useState(false);
-
   let openModal = () => {
     setOpen(true);
   };
@@ -13,15 +12,16 @@ function NewBook() {
   let closeModal = () => {
     setOpen(false);
   };
+
   return (
-    <div className="flex justify-center mb-6">
+    <div className="flex justify-center mb-6 mr-12">
       <button
         type="button"
         onClick={openModal}
         className="relative inline-flex items-center px-4 py-2 shadow-sm text-sm font-medium rounded-md text-indigo-500 border-2 border-indigo-500 hover:bg-indigo-600 hover:text-white"
       >
         <PlusSmIcon className="-ml-1 mr-2 h-5 w-5" aria-hidden="true" />
-        <span>Añadir nuevo libro</span>
+        <span>Añadir libro</span>
       </button>
 
       <Transition.Root show={isOpen} as={Fragment}>
@@ -58,7 +58,7 @@ function NewBook() {
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
               <Fragment>
-                <NewBookForm close={closeModal} />
+                <NewBookForm close={closeModal} addBook={props.loadBooks} />
               </Fragment>
             </Transition.Child>
           </div>
