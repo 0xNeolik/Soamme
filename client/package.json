@@ -2,7 +2,6 @@
   "name": "soamee-books",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://soamee-books.herokuapp.com/api",
   "dependencies": {
     "@craco/craco": "^6.4.2",
     "@headlessui/react": "^1.4.2",
