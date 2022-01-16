@@ -1,8 +1,8 @@
 const router = require("express").Router();
 
 const Book = require("../../models/books.model");
-const User = require("../../models/User.model");
-
+const User = require("../../models/user.model");
+//Take favorites
 router.get("/user/:id", (req, res, next) => {
   const { id } = req.params;
   User.findById(id)
