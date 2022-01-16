@@ -2,18 +2,35 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import BookService from "../../Services/BooksServices/books.service";
 import EditBook from "./EditBook/EditBook";
+import AddToFavorite from "./AddToFavorite/AddToFavorite";
 
 let service = new BookService();
 
 export default function BookDetails(props) {
   let [book, setBook] = useState();
+  let [favoriteButton, setFavoriteButton] = useState(false);
+
   let logged = props.loggedUser;
+  let [favorites, setFavorites] = useState(logged?.favorites);
+
   const { id } = props.match.params;
 
   useEffect(() => {
     loadBook();
     window.scrollTo(0, 0);
   }, []);
+
+  useEffect(() => {
+    addedToFavorite();
+  }, [favorites, book]);
+
+  let addedToFavorite = () => {
+    favorites?.map((favorite) => {
+      if (favorite === id) {
+        setFavoriteButton(true);
+      }
+    });
+  };
 
   let loadBook = () => {
     service.getOneBook(id).then((result) => {
@@ -58,9 +75,20 @@ export default function BookDetails(props) {
               {book?.description}
             </p>
             {logged && (
-              <div className="inline-flex">
-                <EditBook book={book} loadBook={loadBook} />
-              </div>
+              <>
+                <div className="inline-flex">
+                  <EditBook book={book} loadBook={loadBook} />
+                </div>
+                {favoriteButton === false && (
+                  <div className="inline-flex">
+                    <AddToFavorite
+                      book={book}
+                      loadBook={loadBook}
+                      addedToFavorite={addedToFavorite}
+                    />
+                  </div>
+                )}
+              </>
             )}
           </div>
         </div>

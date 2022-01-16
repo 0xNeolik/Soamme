@@ -27,7 +27,6 @@ router.post("/create-new-book", (req, res) => {
 
 //Updates an existing book
 router.put("/edit", (req, res) => {
-  console.log(req.body);
   let { id, isbn, name, description, img_url } = req.body;
   Book.findByIdAndUpdate(
     id,

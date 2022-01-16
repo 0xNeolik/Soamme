@@ -68,7 +68,7 @@ export default function EditAuthor(props) {
             <div className="mt-1">
               <input
                 id="nombre"
-                name="nombre"
+                name="first_name"
                 type="text"
                 onChange={handleInputChange}
                 value={author.first_name}
@@ -88,7 +88,7 @@ export default function EditAuthor(props) {
               <input
                 id="apellido"
                 onChange={handleInputChange}
-                name="apellido"
+                name="last_name"
                 value={author.last_name}
                 type="text"
                 required
@@ -107,7 +107,7 @@ export default function EditAuthor(props) {
               <input
                 id="allias"
                 onChange={handleInputChange}
-                name="isalliasbn"
+                name="allias"
                 value={author.allias}
                 type="text"
                 required

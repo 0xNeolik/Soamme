@@ -26,7 +26,6 @@ router.post("/signUp", (req, res) => {
 
 router.post("/login", (req, res) => {
   const { email, password } = req.body;
-  console.log("-----", req.body);
   User.findOne({ email })
     .then((user) => {
       bcrypt.compareSync(password, user.password) //Validate password

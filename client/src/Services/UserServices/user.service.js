@@ -12,6 +12,11 @@ class UserServices {
     return this.app.post("/edit", username, email, password, address, img_url);
   };
   getOwner = (id) => this.app.get(`/user/${id}`);
+  addToFavorite = (id) => {
+    console.log(id);
+    return this.app.get(`/addFavorite/${id}`);
+  };
+  getFavorites = (id) => this.app.get(`/favorites/${id}`);
 }
 
 export default UserServices;
