@@ -85,6 +85,7 @@ export default function BookDetails(props) {
                       book={book}
                       loadBook={loadBook}
                       addedToFavorite={addedToFavorite}
+                      setFavoriteButton={setFavoriteButton}
                     />
                   </div>
                 )}

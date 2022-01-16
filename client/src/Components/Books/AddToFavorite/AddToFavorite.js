@@ -7,10 +7,12 @@ let userService = new UserService();
 
 function BookFavorite(props) {
   let book = props.book;
-  console.log(props);
+
+  console.log("---", props);
+
   let addBook = () => {
     userService.addToFavorite(book?._id).then((result) => {
-      console.log(result);
+      props.setFavoriteButton(true);
       props.loadBook();
     });
   };

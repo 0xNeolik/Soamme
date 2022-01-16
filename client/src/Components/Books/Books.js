@@ -31,6 +31,7 @@ export default function Books(props) {
   const getInfo = (searching) => {
     setSearch(searching);
   };
+
   const getShort = (id) => {
     setShort(id);
   };
