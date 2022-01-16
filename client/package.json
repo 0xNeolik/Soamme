@@ -24,7 +24,7 @@
   "scripts": {
     "deploy": "rm -rf build/*; npm run build; cd ..; rm -rf server/public/*; mv client/build/* server/public; git add .; git commit -m deploy; git subtree push --prefix=server origin main",
     "start": "REACT_APP_BASE_URL=http://localhost:5005/api craco start",
-    "build": "REACT_APP_BASE_URL=https://nextdoor-app.herokuapp.com/api craco build",
+    "build": "REACT_APP_BASE_URL=https://soamee-books.herokuapp.com/api craco build",
     "test": "craco test",
     "eject": "react-scripts eject"
   },
