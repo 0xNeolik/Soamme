@@ -9,6 +9,7 @@ Soamee Books Challenge consiste en una prueba tecnica realizada para la empresa 
 En ellas se presentan barias pantallas, empezando por una pagina de inicio que nos permite ir a la secci;on de libros o de autores:
   - En la seccion de libros apareceran todos los libros disponibles en la base de datos. Clickando sobre uno de ellos se nos cargaran los detalles de este libro asi como un enlace directo al autor de este mismo libro.
   - En la seccion de auotres, apareceran todos los autores disponibles en la secci;on de autores. Clickando sobre uno de ellos se nos cargaran los detalles de este autor.
+
 Como usuario de Soamee Books, podremos crearnos una cuenta con la cual desbloquearemos varias posibilidades de interactuar en la Web:
   - Se nos permitira Editar autores y libros.
   - Se nos permitira añadir libros a nuestros favoritos.
